@@ -7,9 +7,9 @@ class CodeExplain(object):
         print("Plugin initialized")  # For debugging
         self.nvim.command("echom 'My plugin is being executed'")
 
-    @pynvim.command('CodeExplain',  nargs='*', range='')
-    def codeExplain(self, args, Range):
-        print(Range)
+    @pynvim.command('CodeExplain',  nargs='*', range=True)
+    def codeExplain(self, args, range):
+        print("range " + range)
         #self.nvim.command(Range)
         #print('Command with range: {}'.format(range))
 
