@@ -6,7 +6,7 @@ class CodeExplain(object):
         self.nvim = nvim
         self.nvim.command("echom 'My plugin is being executed'")
 
-    #@pynvim.autcmd('', pattern='*', eval='', sync=True)
-    @pynvim.function('CodeExplain')
+    @pynvim.function('CodeExplain',sync=True)
     def code_explain(self, filename):
+        self.nvim.command("echom 'My plugin is being executed'")
         self.vim.current.buffer[0] = 'Hello, Neovim!'
