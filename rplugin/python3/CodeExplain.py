@@ -40,5 +40,5 @@ class CodeExplain(object):
         lines = self.nvim.current.buffer[begin - 1:end]
         selected_text = '\n'.join(lines)
         explained = self.codeExplainAI.run(selected_text)
-        print(explained_code)
+        print(explained)
         self.nvim.command(f"echom \"{explained}\"")
