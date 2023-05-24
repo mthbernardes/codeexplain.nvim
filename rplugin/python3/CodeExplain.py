@@ -9,8 +9,8 @@ class CodeExplain(object):
 
     @pynvim.command('CodeExplain',  nargs='*', range=True)
     def codeExplain(self, args, range):
-        nvim.command("normal! gv\"ay")
-        selection = nvim.evaluate("@a")
+        self.nvim.command("normal! gv\"ay")
+        selection = self.nvim.evaluate("@a")
         print(selection)
         #self.nvim.out_write('Command with args: {}, range: {}'.format(args, range))
 
