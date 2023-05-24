@@ -10,9 +10,10 @@ class CodeExplain(object):
     def codeExplain(self, args, range):
         begin = self.nvim.eval("line(\"'<\")")
         end = self.nvim.eval("line(\"'>\")")
-
         lines = self.nvim.current.buffer[begin - 1:end]
         selected_text = '\n'.join(lines)
-
-        print(selected_text)
+        print(f"begin: {begin}")
+        print(f"end: {end}")
+        print(f"lines: {lines}")
+        print(f"selected_text: {selected_text}")
 
