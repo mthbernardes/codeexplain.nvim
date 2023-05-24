@@ -14,7 +14,7 @@ class IA():
         LLAMA_EMBEDDINGS_MODEL = '/Users/matheus.bernardes/dev/mthbernardes/code-query/models/ggml-model-q4_0.bin' 
         MODEL_N_CTX = 1000
         CALLBACKS = [StreamingStdOutCallbackHandler()]
-        PROMPT_TEMPLATE = """The following Python code was submitted for analysis and explanation:
+        PROMPT_TEMPLATE = """The following code was submitted for analysis and explanation:
         ```
         {code}
         ```
