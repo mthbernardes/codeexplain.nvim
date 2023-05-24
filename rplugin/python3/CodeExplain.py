@@ -35,10 +35,7 @@ class CodeExplain(object):
 
     @pynvim.command('CodeExplain', sync=True)
     def codeExplain(self):
-        begin = self.nvim.eval("line(\"'<\")")
-        end = self.nvim.eval("line(\"'>\")")
-        lines = self.nvim.current.buffer[begin - 1:end]
-        selected_text = '\n'.join(lines)
+        selected_text = self.nvim.call('input', 'v')
         explained = self.codeExplainAI.run(selected_text)
         print(explained)
         self.nvim.command(f"echom \"{explained}\"")
