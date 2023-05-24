@@ -24,10 +24,14 @@ class IA():
         """
         PROMPT = PromptTemplate(template=PROMPT_TEMPLATE, input_variables=["language","code"])
         LLM = LlamaCpp(model_path=LLAMA_EMBEDDINGS_MODEL, n_ctx=MODEL_N_CTX, verbose=False)
-        self.CHAIN = LLMChain(llm=LLM, prompt=PROMPT,memory=ConversationBufferMemory())
+        #self.CHAIN = LLMChain(llm=LLM, prompt=PROMPT,memory=ConversationBufferMemory())
+        self.CHAIN = LLMChain(llm=LLM, prompt=PROMPT)
 
-    def run(self, code):
-        return self.CHAIN.run(code)
+    def run(self, input):
+        explained = self.CHAIN.run(input)
+        lines = explained.split('\n')
+        lines = [self.nvim.funcs.escape(line, '\"\\') for line in lines]
+        return lines
 
 @pynvim.plugin
 class CodeExplain(object):
@@ -65,8 +69,6 @@ class CodeExplain(object):
     @pynvim.command('CodeExplain', nargs='*',range=True, sync=True)
     def codeExplain(self,args,range):
         selected_text = self.getSelectedText()
-        programming_language = self.getProgrammingLanguage()
+        programming_language = self.getProgrammingLanguage() or "programming"
         explained = self.codeExplainAI.run({"language": programming_language,"code":selected_text})
-        lines = explained.split('\n')
-        lines = [self.nvim.funcs.escape(line, '\"\\') for line in lines]
-        self.createWindowBuffer(lines)
+        self.createWindowBuffer(explained)
