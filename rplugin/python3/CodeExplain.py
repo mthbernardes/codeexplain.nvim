@@ -7,7 +7,8 @@ class CodeExplain(object):
         print("Plugin initialized")  # For debugging
         self.nvim.command("echom 'My plugin is being executed'")
 
-    @pynvim.command('CodeExplain', sync=True)
-    def codeExplain(self, filename):
+    @pynvim.command('CodeExplain', range: True, sync: True)
+    
+    def codeExplain(self,start, stop):
+        print(self.nvim.current.buffer.lines[start-1:stop-1])
         self.nvim.command("echom 'My plugin is being executed'")
-        self.vim.current.buffer[0] = 'Hello, Neovim!'
