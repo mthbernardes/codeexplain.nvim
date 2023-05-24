@@ -14,6 +14,5 @@ class CodeExplain(object):
         lines = self.nvim.current.buffer[begin - 1:end]
         selected_text = '\n'.join(lines)
 
-        self.nvim.command(f"echom 'Selected text: {selected_text}'")
         print(selected_text)
 
