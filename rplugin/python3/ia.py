@@ -21,7 +21,10 @@ class IA():
         PROMPT = PromptTemplate(template=PROMPT_TEMPLATE, input_variables=["code"])
         LLM = LlamaCpp(model_path=LLAMA_EMBEDDINGS_MODEL, n_ctx=MODEL_N_CTX, verbose=False)
         self.CHAIN = LLMChain(llm=LLM, prompt=PROMPT,memory=ConversationBufferMemory())
-        return self.CHAIN
+
+    def run(self,code):
+        return self.CHAIN.run(code)
+
 
 #code =  """ 
 #(defn scan* [opts]
