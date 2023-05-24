@@ -34,7 +34,7 @@ class CodeExplain(object):
         self.nvim.command("echom \"My plugin is being executed\"")
 
     @pynvim.command('CodeExplain', range=True, sync=True)
-    def codeExplain(self):
+    def codeExplain(self,range):
         selected_text = self.nvim.call('input', 'v')
         explained = self.codeExplainAI.run(selected_text)
         lines = explained.text.split('\n')
