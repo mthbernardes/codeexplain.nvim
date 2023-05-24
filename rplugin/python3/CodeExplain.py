@@ -14,10 +14,11 @@ class IA():
         LLAMA_EMBEDDINGS_MODEL = '/Users/matheus.bernardes/dev/mthbernardes/code-query/models/ggml-model-q4_0.bin' 
         MODEL_N_CTX = 1000
         CALLBACKS = [StreamingStdOutCallbackHandler()]
-        PROMPT_TEMPLATE = """Act as software engineer. You need to explain line by line the following code. If you can not explain the code just answer with "Sorry I was unable to understand it.". 
+        PROMPT_TEMPLATE = """The following Python code was submitted for analysis and explanation:
         ```
         {code}
         ```
+        Could you please explain in detail what this code does, describe the functions and variables involved, and provide a step-by-step walkthrough of its operation?
         """
         PROMPT = PromptTemplate(template=PROMPT_TEMPLATE, input_variables=["code"])
         LLM = LlamaCpp(model_path=LLAMA_EMBEDDINGS_MODEL, n_ctx=MODEL_N_CTX, verbose=False)
