@@ -1,10 +1,9 @@
 import pynvim
 import langchain
+from pathlib import Path
 from pygments.util import ClassNotFound
 from pygments.lexers import guess_lexer_for_filename, TextLexer
-from langchain.cache import InMemoryCache
 from langchain.llms import LlamaCpp
-from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain.memory import ConversationBufferMemory
@@ -13,7 +12,7 @@ from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 class IA():
     def __init__(self,):
         langchain.llm_cache = InMemoryCache()
-        LLAMA_EMBEDDINGS_MODEL = '/Users/matheus.bernardes/dev/mthbernardes/code-query/models/ggml-model-q4_0.bin' 
+        LLAMA_EMBEDDINGS_MODEL = str(Path.home()) +'/.codeexplain/model.bin' 
         MODEL_N_CTX = 1000
         CALLBACKS = [StreamingStdOutCallbackHandler()]
         PROMPT_TEMPLATE = """This is a piece of {language} code. Your only job is to explain line-by-line of it and identify any potential security vulnerabilities.
