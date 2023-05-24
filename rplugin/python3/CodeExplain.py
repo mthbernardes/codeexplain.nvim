@@ -9,11 +9,6 @@ class CodeExplain(object):
 
     @pynvim.command('CodeExplain',  nargs='*', range=True)
     def codeExplain(self, args, range):
-        self.nvim.command("normal! gv\"ay")
-        selection = self.nvim.eval("@a")
-        print(selection)
-        #self.nvim.out_write('Command with args: {}, range: {}'.format(args, range))
-
-        #self.nvim.command(Range)
-        #print('Command with range: {}'.format(range))
-
+        selected_text = self.nvim.funcs.getreg('"')
+        self.nvim.command(f"echom 'Selected text: {selected_text}'")
+        print(selected_text)
