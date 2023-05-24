@@ -4,6 +4,7 @@ import pynvim
 class CodeExplain(object):
     def __init__(self, nvim):
         self.nvim = nvim
+        print("Plugin initialized")  # For debugging
         self.nvim.command("echom 'My plugin is being executed'")
 
     @pynvim.function('CodeExplain',sync=True)
