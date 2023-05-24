@@ -46,10 +46,13 @@ class CodeExplain(object):
         winnr = self.nvim.api.open_win(bufnr, True, {
             'relative': 'editor',
             'width': 80,
-            'height': 20,
+            'height': count(lines),
             'row': 10,
             'col': 10
         })
         self.nvim.api.buf_set_lines(bufnr, 0, -1, True, lines)
 
         #self.nvim.command(f"call popup_create({lines}, {{}})")
+
+for x in range(5):
+    print(x)
