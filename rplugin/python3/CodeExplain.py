@@ -16,11 +16,12 @@ class IA():
         LLAMA_EMBEDDINGS_MODEL = '/Users/matheus.bernardes/dev/mthbernardes/code-query/models/ggml-model-q4_0.bin' 
         MODEL_N_CTX = 1000
         CALLBACKS = [StreamingStdOutCallbackHandler()]
-        PROMPT_TEMPLATE = """This is a piece of {language} code. I need a detailed line-by-line explanation of what it does and identification of any potential security vulnerabilities or coding bad practices. Here's the code:
+        PROMPT_TEMPLATE = """This is a piece of {language} code. Your only job is to explain line-by-line of it and identify any potential security vulnerabilities.
         ```
         {code}
         ```
         Please provide a detailed walkthrough of its operation and highlight any sections of the code that could potentially lead to security risks or inefficiencies.
+        answer:
         """
 
         PROMPT = PromptTemplate(template=PROMPT_TEMPLATE, input_variables=["language","code"])
