@@ -22,7 +22,7 @@ class IA():
         ```
         Could you please explain in detail what this code does, describe the functions and variables involved, and provide a step-by-step walkthrough of its operation?
         """
-        PROMPT = PromptTemplate(template=PROMPT_TEMPLATE, input_variables=["code","language"])
+        PROMPT = PromptTemplate(template=PROMPT_TEMPLATE, input_variables=["language","code"])
         LLM = LlamaCpp(model_path=LLAMA_EMBEDDINGS_MODEL, n_ctx=MODEL_N_CTX, verbose=False)
         self.CHAIN = LLMChain(llm=LLM, prompt=PROMPT,memory=ConversationBufferMemory())
 
@@ -66,7 +66,7 @@ class CodeExplain(object):
     def codeExplain(self,args,range):
         selected_text = self.getSelectedText()
         programming_language = self.getProgrammingLanguage()
-        explained = self.codeExplainAI.run({"code":selected_text,"language": programming_language})
+        explained = self.codeExplainAI.run({"language": programming_language,"code":selected_text})
         lines = explained.split('\n')
         lines = [self.nvim.funcs.escape(line, '\"\\') for line in lines]
         self.createWindowBuffer(lines)
