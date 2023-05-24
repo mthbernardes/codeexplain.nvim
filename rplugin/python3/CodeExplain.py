@@ -39,4 +39,14 @@ class CodeExplain(object):
         explained = self.codeExplainAI.run(selected_text)
         lines = explained.split('\n')
         lines = [self.nvim.funcs.escape(line, '\"\\') for line in lines]
-        self.nvim.command(f"call popup_create({lines}, {{}})")
+        bufnr = self.nvim.api.create_buf(False, True)
+        winnr = self.nvim.api.open_win(bufnr, True, {
+            'relative': 'editor',
+            'width': 80,
+            'height': 20,
+            'row': 10,
+            'col': 10
+        })
+        self.nvim.api.buf_set_lines(bufnr, 0, -1, True, lines)
+
+        #self.nvim.command(f"call popup_create({lines}, {{}})")
