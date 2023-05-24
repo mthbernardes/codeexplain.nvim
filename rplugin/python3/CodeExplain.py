@@ -14,7 +14,7 @@ class IA():
         LLAMA_EMBEDDINGS_MODEL = '/Users/matheus.bernardes/dev/mthbernardes/code-query/models/ggml-model-q4_0.bin' 
         MODEL_N_CTX = 1000
         CALLBACKS = [StreamingStdOutCallbackHandler()]
-        PROMPT_TEMPLATE = """Act as a expert software engineer with high skill in software quality, performance and security. I will provide a piece of code to you and it is your job to explain it. If you can not explain the code just answer with "Sorry I was unable to understand it." 
+        PROMPT_TEMPLATE = """Act as software engineer. You need to explain line by line the following code. If you can not explain the code just answer with "Sorry I was unable to understand it.". 
         ```
         {code}
         ```
@@ -52,7 +52,3 @@ class CodeExplain(object):
         })
         self.nvim.api.buf_set_lines(bufnr, 0, -1, True, lines)
 
-        #self.nvim.command(f"call popup_create({lines}, {{}})")
-
-for x in range(5):
-    print(x)
