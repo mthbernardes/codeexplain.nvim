@@ -30,7 +30,6 @@ class IA():
     def run(self, input):
         explained = self.CHAIN.run(input)
         lines = explained.split('\n')
-        lines = [self.nvim.funcs.escape(line, '\"\\') for line in lines]
         return lines
 
 @pynvim.plugin
@@ -71,4 +70,8 @@ class CodeExplain(object):
         selected_text = self.getSelectedText()
         programming_language = self.getProgrammingLanguage() or "programming"
         explained = self.codeExplainAI.run({"language": programming_language,"code":selected_text})
+        lines = [self.nvim.funcs.escape(line, '\"\\') for line in explained]
         self.createWindowBuffer(explained)
+
+for x in range(10):
+    print(x*x+1)
