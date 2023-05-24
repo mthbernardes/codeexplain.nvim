@@ -9,7 +9,10 @@ class CodeExplain(object):
 
     @pynvim.command('CodeExplain',  nargs='*', range=True)
     def codeExplain(self, args, range):
-        print("range " + range)
+        print(range)
+        self.nvim.current.line = ('Command with args: {}, range: {}'
+            .format(args, range))
+
         #self.nvim.command(Range)
         #print('Command with range: {}'.format(range))
 
