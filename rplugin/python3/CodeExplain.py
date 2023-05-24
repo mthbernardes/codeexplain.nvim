@@ -26,7 +26,7 @@ class IA():
     def run(self,code):
         explained_code = self.CHAIN.run(code)
         print(explained_code)
-        return explain_code
+        return explained_code
 
 @pynvim.plugin
 class CodeExplain(object):
@@ -35,7 +35,7 @@ class CodeExplain(object):
         self.codeExplainAI = IA()
         self.nvim.command("echom \"My plugin is being executed\"")
 
-    @pynvim.command('CodeExplain',  nargs='*', range=True,sync=True)
+    @pynvim.command('CodeExplain',  nargs='*', range=True,sync=False)
     def codeExplain(self, args, range):
         begin = self.nvim.eval("line(\"'<\")")
         end = self.nvim.eval("line(\"'>\")")
