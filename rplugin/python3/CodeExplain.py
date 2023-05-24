@@ -24,9 +24,7 @@ class IA():
         self.CHAIN = LLMChain(llm=LLM, prompt=PROMPT,memory=ConversationBufferMemory())
 
     def run(self,code):
-        explained_code = self.CHAIN.run(code)
-        print(explained_code)
-        return explained_code
+        return self.CHAIN.run(code)
 
 @pynvim.plugin
 class CodeExplain(object):
