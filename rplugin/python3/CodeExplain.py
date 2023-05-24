@@ -16,15 +16,16 @@ class IA():
         LLAMA_EMBEDDINGS_MODEL = '/Users/matheus.bernardes/dev/mthbernardes/code-query/models/ggml-model-q4_0.bin' 
         MODEL_N_CTX = 1000
         CALLBACKS = [StreamingStdOutCallbackHandler()]
-        PROMPT_TEMPLATE = """The {language} following code was submitted for analysis and explanation:
+        PROMPT_TEMPLATE = """
+        "This is a piece of {language} code. I need a detailed line-by-line explanation of what it does and identification of any potential security vulnerabilities or coding bad practices. Here's the code:
         ```
         {code}
         ```
-        Could you please explain in detail what this code does, describe the functions and variables involved, and provide a step-by-step walkthrough of its operation?
+        Please provide a detailed walkthrough of its operation and highlight any sections of the code that could potentially lead to security risks or inefficiencies."
         """
+
         PROMPT = PromptTemplate(template=PROMPT_TEMPLATE, input_variables=["language","code"])
         LLM = LlamaCpp(model_path=LLAMA_EMBEDDINGS_MODEL, n_ctx=MODEL_N_CTX, verbose=False)
-        #self.CHAIN = LLMChain(llm=LLM, prompt=PROMPT,memory=ConversationBufferMemory())
         self.CHAIN = LLMChain(llm=LLM, prompt=PROMPT)
 
     def run(self, input):
@@ -72,6 +73,3 @@ class CodeExplain(object):
         explained = self.codeExplainAI.run({"language": programming_language,"code":selected_text})
         lines = [self.nvim.funcs.escape(line, '\"\\') for line in explained]
         self.createWindowBuffer(explained)
-
-for x in range(10):
-    print(x*x+1)
