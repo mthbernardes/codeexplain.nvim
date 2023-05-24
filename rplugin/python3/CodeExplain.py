@@ -33,7 +33,7 @@ class CodeExplain(object):
     def __init__(self, nvim):
         self.nvim = nvim
         self.codeExplainAI = IA()
-        self.nvim.command("echom 'My plugin is being executed'")
+        self.nvim.command("echom \"My plugin is being executed\"")
 
     @pynvim.command('CodeExplain',  nargs='*', range=True,sync=True)
     def codeExplain(self, args, range):
@@ -42,4 +42,5 @@ class CodeExplain(object):
         lines = self.nvim.current.buffer[begin - 1:end]
         selected_text = '\n'.join(lines)
         explained = self.codeExplainAI.run(selected_text)
-        self.nvim.command(f"echom '{explained}'")
+        print(explained_code)
+        self.nvim.command(f"echom \"{explained}\"")
