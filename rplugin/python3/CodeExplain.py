@@ -26,7 +26,7 @@ class IA():
         LLM = LlamaCpp(model_path=LLAMA_EMBEDDINGS_MODEL, n_ctx=MODEL_N_CTX, verbose=False)
         self.CHAIN = LLMChain(llm=LLM, prompt=PROMPT,memory=ConversationBufferMemory())
 
-    def run(self,code):
+    def run(self, code):
         return self.CHAIN.run(code)
 
 @pynvim.plugin
