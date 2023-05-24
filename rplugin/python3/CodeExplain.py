@@ -37,5 +37,6 @@ class CodeExplain(object):
     def codeExplain(self):
         selected_text = self.nvim.call('input', 'v')
         explained = self.codeExplainAI.run(selected_text)
-        print(explained)
-        self.nvim.command(f"echom \"{explained}\"")
+        lines = explained.text.split('\n')
+        lines = [self.nvim.funcs.escape(line, '\"\\') for line in lines]
+        self.nvim.command(f"call popup_create({lines}, {{}})")
