@@ -1,12 +1,10 @@
-import neovim
+import pynvim
 
-@neovim.plugin
+@pynvim.plugin
 class CodeExplain(object):
     def __init__(self, nvim):
         self.nvim = nvim
 
-    @neovim.autocmd('ExplainCode', pattern='*', eval='')
-    def explain_code(self, filename):
+    @pynvim.command('CodeExplain', pattern='*', eval='', sync=True)
+    def code_explain(self, filename):
         self.vim.current.buffer[0] = 'Hello, Neovim!'
-        #self.nvim.out_write('neotags > ' + message + "\n")
-
