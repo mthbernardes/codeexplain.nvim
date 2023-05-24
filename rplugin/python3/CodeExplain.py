@@ -24,7 +24,9 @@ class IA():
         self.CHAIN = LLMChain(llm=LLM, prompt=PROMPT,memory=ConversationBufferMemory())
 
     def run(self,code):
-        return self.CHAIN.run(code)
+        explained_code = self.CHAIN.run(code)
+        print(explained_code)
+        return explain_code
 
 @pynvim.plugin
 class CodeExplain(object):
@@ -33,7 +35,7 @@ class CodeExplain(object):
         self.codeExplainAI = IA()
         self.nvim.command("echom 'My plugin is being executed'")
 
-    @pynvim.command('CodeExplain',  nargs='*', range=True)
+    @pynvim.command('CodeExplain',  nargs='*', range=True,sync=True)
     def codeExplain(self, args, range):
         begin = self.nvim.eval("line(\"'<\")")
         end = self.nvim.eval("line(\"'>\")")
