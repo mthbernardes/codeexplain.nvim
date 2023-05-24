@@ -35,7 +35,10 @@ class CodeExplain(object):
 
     @pynvim.command('CodeExplain', nargs='*',range=True, sync=True)
     def codeExplain(self,args,range):
-        selected_text = self.nvim.call('input', 'v')
+        begin = self.nvim.eval("line(\"'<\")")
+        end = self.nvim.eval("line(\"'>\")")
+        lines = self.nvim.current.buffer[begin - 1:end]
+        selected_text = '\n'.join(lines)
         explained = self.codeExplainAI.run(selected_text)
         lines = explained.split('\n')
         lines = [self.nvim.funcs.escape(line, '\"\\') for line in lines]
