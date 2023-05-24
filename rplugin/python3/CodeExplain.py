@@ -46,7 +46,7 @@ class CodeExplain(object):
         winnr = self.nvim.api.open_win(bufnr, True, {
             'relative': 'editor',
             'width': 80,
-            'height': 20,
+            'height': 10,
             'row': 10,
             'col': 10
         })
