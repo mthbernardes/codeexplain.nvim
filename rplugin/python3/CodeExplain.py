@@ -4,11 +4,16 @@ import pynvim
 class CodeExplain(object):
     def __init__(self, nvim):
         self.nvim = nvim
-        print("Plugin initialized")  # For debugging
         self.nvim.command("echom 'My plugin is being executed'")
 
     @pynvim.command('CodeExplain',  nargs='*', range=True)
     def codeExplain(self, args, range):
-        selected_text = self.nvim.funcs.getreg('"')
+        begin = self.nvim.eval("line(\"'<\")")
+        end = self.nvim.eval("line(\"'>\")")
+
+        lines = self.nvim.current.buffer[begin - 1:end]
+        selected_text = '\n'.join(lines)
+
         self.nvim.command(f"echom 'Selected text: {selected_text}'")
         print(selected_text)
+
