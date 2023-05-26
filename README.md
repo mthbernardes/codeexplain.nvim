@@ -14,8 +14,18 @@ codeexplain.nvim is a NeoVim plugin that uses the powerful [GPT4ALL](https://gpt
 
 ## Installation
 
-### Download the GPT4ALL model
+## Requirements
+- NeoVim
+- Python3
+- langchain
+- llama-cpp-python
+- Pygments
+- pynvim
 
+```bash
+pip install -r langchain==0.0.177 llama-cpp-python==0.1.48 Pygments==2.15.1 pynvim==0.4.3
+```
+### Download the GPT4ALL model
 Before installing the plugin, download the GPT4ALL model and save it in your home directory:
 
 ```bash
@@ -64,13 +74,6 @@ You can use the plugin by selecting a piece of code in Visual mode and running t
 
 A new window will be opened in your NeoVim editor, displaying line-by-line explanations of the selected code and potential security vulnerabilities.
 
-## Requirements
-
-- NeoVim
-- Python3
-- pynvim
-- langchain
-- pygments
 
 ## Contributions
 
