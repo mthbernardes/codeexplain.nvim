@@ -11,6 +11,7 @@ from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 
 class IA():
     def __init__(self,):
+        langchain.llm_cache = InMemoryCache()
         LLAMA_EMBEDDINGS_MODEL = str(Path.home()) +'/.codeexplain/model.bin' 
         MODEL_N_CTX = 1000
         CALLBACKS = [StreamingStdOutCallbackHandler()]
