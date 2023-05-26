@@ -1,25 +1,21 @@
 import pynvim
-import langchain
 from pathlib import Path
 from pygments.util import ClassNotFound
 from pygments.lexers import guess_lexer_for_filename, TextLexer
 from langchain.llms import LlamaCpp
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
-from langchain.memory import ConversationBufferMemory
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 
 class IA():
     def __init__(self,):
-        langchain.llm_cache = InMemoryCache()
         LLAMA_EMBEDDINGS_MODEL = str(Path.home()) +'/.codeexplain/model.bin' 
         MODEL_N_CTX = 1000
         CALLBACKS = [StreamingStdOutCallbackHandler()]
-        PROMPT_TEMPLATE = """This is a piece of {language} code. Your only job is to explain line-by-line of it and identify any potential security vulnerabilities.
+        PROMPT_TEMPLATE = """This is a piece of code written in {language}. Provide a simple walkthrough of its operation and highlight any sections of the code that could potentially lead to security risks or inefficiencies. If you don't find any security risk or inefficiencies just don't mention it.
         ```
         {code}
         ```
-        Please provide a detailed walkthrough of its operation and highlight any sections of the code that could potentially lead to security risks or inefficiencies.
         answer:
         """
 
