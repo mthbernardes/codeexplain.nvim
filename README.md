@@ -20,7 +20,7 @@ Before installing the plugin, download the GPT4ALL model and save it in your hom
 
 ```bash
 mkdir -p "$HOME/.codeexplain/"
-curl -o "$HOME/.codeexplain/model.bin" https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin
+curl -o "$HOME/.codeexplain/model.bin" https://gpt4all.io/models/ggml-vicuna-7b-1.1-q4_2.bin
 ```
 
 ### vim-plug
@@ -52,9 +52,11 @@ Then run `PackerSync` in your NeoVim editor.
 
 Please refer to your package manager's documentation for installation instructions. The general process involves adding a line to your `init.vim` (or equivalent configuration file) and running an installation command.
 
-## Usage
+### Post-install
+Once installed execute the command `:UpdateRemotePlugins`
 
-Once installed, you can use the plugin by selecting a piece of code in Visual mode and running the `CodeExplain` command:
+## Usage
+You can use the plugin by selecting a piece of code in Visual mode and running the `CodeExplain` command:
 
 ```vim
 :CodeExplain
